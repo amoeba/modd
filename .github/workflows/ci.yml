@@ -4,16 +4,10 @@ name: CI
 
 jobs:
   test:
-    strategy:
-      matrix:
-        go-version: ['1.18']
-        os: [ubuntu-latest, macos-latest, windows-latest]
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/setup-go@v3
       with:
-        go-version: ${{ matrix.go-version }}
-        cache: true
+        go-version: '1.18'
     - uses: actions/checkout@v3
     - run: go test ./...
-    - run: go install ./cmd/modd
